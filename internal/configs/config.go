@@ -18,6 +18,7 @@ type cfg struct {
 	DbPort     string
 	DbHost     string
 	DbName     string
+	ServerPort string
 }
 
 func Load() error {
@@ -48,7 +49,7 @@ func Load() error {
 
 	config.DbPort = os.Getenv("DB_PORT")
 	if config.DbPort == "" {
-		config.DbPort = "3306"
+		config.DbPort = "5432"
 	}
 
 	config.DbName = os.Getenv("DB_NAME")
@@ -56,6 +57,10 @@ func Load() error {
 		config.DbName = "meli"
 	}
 
+	config.ServerPort = os.Getenv("SERVER_PORT")
+	if config.ServerPort == "" {
+		config.ServerPort = "8080"
+	}
 	return nil
 }
 
